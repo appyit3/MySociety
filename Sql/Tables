@@ -1,0 +1,12 @@
+-- Table: public.MaintenanceIncome
+
+-- DROP TABLE public.MaintenanceIncome;
+
+CREATE TABLE public.MaintenanceIncome
+(
+    ExpenseId bigint,
+    FlatCode character varying(50) NOT NULL REFERENCES Categories(CategoryCode),
+    Amount numeric(12,2)
+)
+	
+select * from MaintenanceIncome
