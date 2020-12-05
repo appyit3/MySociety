@@ -1,10 +1,12 @@
 const express = require('express');
-const debug = require('debug')('app');
-const morgan = require('morgan');
 
 const app = express();
+const debug = require('debug')('app');
+const morgan = require('morgan');
+// const sequelize = require('./src/dataaccess/sqladapter');
 const port = process.env.PORT || 3000;
-const maintenanceRouter = require('./src/routes/maintenanceRoutes');
+const societyId = 123;
+const maintenanceRouter = require('./src/routes/maintenanceRoutes')(societyId);
 
 app.use(morgan('combined'));
 
@@ -18,3 +20,9 @@ app.get('/', (req, res) => {
 app.listen(port, () => {
   debug(`listen on port ${port}`);
 });
+
+// sequelize.query('SELECT * FROM maintenanceIncome')
+//   .then((mi) => {
+//     const maintenanceInc = mi;
+//     debug(maintenanceInc);
+//   });

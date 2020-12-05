@@ -1,20 +1,30 @@
 const express = require('express');
+const sqladapter = require('../dataaccess/sqladapter');
 
 const maintenanceRouter = express.Router();
 
-maintenanceRouter.route('/')
-  .get((req, res) => {
-    res.send('maintenance');
-  });
+function router(societyId) {
+  maintenanceRouter.route('/')
+    .get((req, res) => {
+      res.send(`maintenance of society ${societyId}`);
+    });
 
-maintenanceRouter.route('/maintenanceBills')
-  .get((req, res) => {
-    res.send('maintenanceBills');
-  });
+  maintenanceRouter.route('/maintenanceBills')
+    .get((req, res) => {
+      res.send('maintenanceBills');
+    });
 
-maintenanceRouter.route('/maintenanceIncome')
-  .get((req, res) => {
-    res.send('maintenanceIncome');
-  });
+  maintenanceRouter.route('/maintenanceIncome')
+    .get((req, res) => {
+      sqladapter.getMaintenanceIncome()
+        .then((mi) => {
+          const maintenanceIncome = mi;
+          res.send(maintenanceIncome);
+        })
+        .catch((error) => error);
+    });
 
-module.exports = maintenanceRouter;
+  return maintenanceRouter;
+}
+
+module.exports = router;
