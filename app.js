@@ -20,9 +20,3 @@ app.get('/', (req, res) => {
 app.listen(port, () => {
   debug(`listen on port ${port}`);
 });
-
-// sequelize.query('SELECT * FROM maintenanceIncome')
-//   .then((mi) => {
-//     const maintenanceInc = mi;
-//     debug(maintenanceInc);
-//   });

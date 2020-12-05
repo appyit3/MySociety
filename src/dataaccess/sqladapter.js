@@ -1,5 +1,4 @@
 const Sequelize = require('sequelize');
-const debug = require('debug');
 
 const sequelize = new Sequelize(
   process.env.DATABASE,
@@ -9,7 +8,6 @@ const sequelize = new Sequelize(
     dialect: 'postgres',
     port: 5432,
     host: process.env.DATABASE_SERVER,
-    logging: debug,
     define: {
       timestamps: false,
     },
@@ -17,8 +15,7 @@ const sequelize = new Sequelize(
 );
 
 function getMaintenanceIncome() {
-  debug('getMaintenanceIncome');
-  return sequelize.query('SELECT * FROM maintenanceIncome');
+  return sequelize.query('SELECT * FROM maintenanceIncome', { type: sequelize.QueryTypes.SELECT });
 }
 
 module.exports.getMaintenanceIncome = getMaintenanceIncome;
