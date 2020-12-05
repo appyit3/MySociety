@@ -1,7 +1,7 @@
-const sqladapter = require('./sqladapter');
+const { sqlconnection } = require('./sqladapter');
 
 function getMaintenanceIncome() {
-  return sqladapter.sequelize.query('SELECT * FROM maintenanceIncome', { type: sqladapter.sequelize.QueryTypes.SELECT });
+  return sqlconnection.query('SELECT * FROM maintenanceIncome', { type: sqlconnection.QueryTypes.SELECT });
 }
 
 module.exports.getMaintenanceIncome = getMaintenanceIncome;
