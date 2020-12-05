@@ -14,9 +14,4 @@ const sequelize = new Sequelize(
   },
 );
 
-function getMaintenanceIncome() {
-  return sequelize.query('SELECT * FROM maintenanceIncome', { type: sequelize.QueryTypes.SELECT });
-}
-
-module.exports.getMaintenanceIncome = getMaintenanceIncome;
 module.exports.sequelize = sequelize;

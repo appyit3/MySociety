@@ -1,6 +1,6 @@
 const express = require('express');
 // const debug = require('debug')('app');
-const sqladapter = require('../dataaccess/sqladapter');
+const maintenanceData = require('../dataaccess/maintenancedata');
 
 const maintenanceRouter = express.Router();
 
@@ -17,7 +17,7 @@ function router(societyId) {
 
   maintenanceRouter.route('/maintenanceIncome')
     .get((req, res) => {
-      sqladapter.getMaintenanceIncome()
+      maintenanceData.getMaintenanceIncome()
         .then((mi) => {
           const maintenanceIncome = mi;
           res.send(maintenanceIncome);
